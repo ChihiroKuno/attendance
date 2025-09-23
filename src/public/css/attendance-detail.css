@@ -1,0 +1,79 @@
+.attendance-detail-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 20px;
+    background: #f6f5f7;
+}
+
+.attendance-detail-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-left: 6px solid #000;
+    padding-left: 10px;
+    color: #333;
+}
+
+.attendance-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.attendance-detail-table th,
+.attendance-detail-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 14px;
+}
+
+.attendance-detail-table th {
+    width: 20%;
+    font-weight: bold;
+    color: #444;
+    background: #fff;
+}
+
+.attendance-detail-table td input,
+.attendance-detail-table td textarea {
+    padding: 6px 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.attendance-detail-table td textarea {
+    width: 100%;
+    min-height: 50px;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.btn-submit {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 30px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-submit:hover {
+    background: #444;
+}

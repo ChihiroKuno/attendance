@@ -1,0 +1,106 @@
+/* ===== ログインコンテナ ===== */
+.login-container {
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+}
+
+/* 見出し */
+.login-container h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* フォーム */
+form {
+    text-align: left;
+}
+
+/* フォームグループ */
+.form-group {
+    margin-bottom: 40px;
+}
+
+/* ラベル */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* 入力欄 */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #000;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+/* ボタン */
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.btn-submit:hover {
+    opacity: 0.8;
+}
+
+/* エラーメッセージ */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* 会員登録リンク */
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.register-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* ===== レスポンシブ対応 ===== */
+
+/* ▼ タブレット（768px〜850px） */
+@media (max-width: 850px) {
+    .login-container {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .login-container h1 {
+        font-size: 22px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        font-size: 15px;
+        padding: 8px;
+    }
+
+    .btn-submit {
+        font-size: 15px;
+        padding: 10px;
+    }
+}

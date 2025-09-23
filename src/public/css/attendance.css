@@ -1,0 +1,113 @@
+body {
+    background-color: #f6f5f7;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+}
+
+/* コンテナ */
+.attendance-container {
+    margin-top: 180px;
+}
+
+/* ステータス */
+.status-label {
+    display: inline-block;
+    background: #ddd;
+    color: #555;
+    font-size: 14px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+/* 日付 */
+.date {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+/* 時刻 */
+.time {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* ボタン */
+.attendance-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.attendance-buttons form {
+    display: inline-block;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #000;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    opacity: 0.8;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #000;
+}
+
+.btn-secondary:hover {
+    opacity: 0.8;
+}
+
+/* メッセージ */
+.message {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+/* ✅ PC (1400px〜1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .attendance-container {
+        margin-top: 200px;
+    }
+    .time {
+        font-size: 55px;
+    }
+    .btn-primary,
+    .btn-secondary {
+        font-size: 20px;
+        padding: 14px 35px;
+    }
+}
+
+/* ✅ タブレット (768px〜850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .attendance-container {
+        margin-top: 120px;
+    }
+    .time {
+        font-size: 40px;
+    }
+    .attendance-buttons {
+        gap: 15px;
+    }
+    .btn-primary,
+    .btn-secondary {
+        font-size: 16px;
+        padding: 10px 25px;
+    }
+}

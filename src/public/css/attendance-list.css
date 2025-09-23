@@ -1,0 +1,162 @@
+body {
+    background-color: #f6f5f7;
+    font-family: 'Arial', sans-serif;
+}
+
+/* コンテナ */
+.attendance-list-container {
+    width: 90%;          /* ブラウザ幅の90%を使う */
+    max-width: 1200px;   /* 最大幅は1200pxまで（調整可） */
+    margin: 60px auto;   /* 中央寄せ（上下60pxの余白も追加） */
+    padding: 20px;
+    background: #f6f5f7;
+}
+
+/* タイトル */
+.attendance-list-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: left;
+    border-left: 6px solid #000;
+    padding-left: 10px;
+    background: #f6f5f7;
+}
+
+/* 月切替 */
+.month-selector {
+    display: flex;
+    justify-content: space-between; /* 両端配置 */
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    background: #fff;
+    padding: 15px 20px;   /* 左右に余白を追加 */
+    border-radius: 10px;
+}
+
+.month-display {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center; /* 中央寄せ（あれば安心） */
+    flex: 1;            /* 中央で幅を確保 */
+}
+
+.month-display i {
+    margin-right: 6px;
+    color: #444;
+}
+
+.month-btn {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.month-btn:hover {
+    background: #f0f0f0;
+}
+
+/* テーブル */
+.attendance-table {
+    width: 100%;
+    table-layout: fixed;    /* 均等に列幅を割り当てる */
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* ヘッダー */
+.attendance-table th {
+    background: #fff;
+    font-weight: bold;
+    padding: 12px 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* セル */
+.attendance-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* 縦罫線を消す */
+.attendance-table th,
+.attendance-table td {
+    border-right: none;
+}
+
+/* 日付列を左寄せ */
+.attendance-table td.td-date {
+    text-align: left;
+    padding-left: 18px;
+    color: #666;
+}
+
+/* 詳細リンク */
+.attendance-table a {
+    color: #444;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.attendance-table a:hover {
+    text-decoration: underline;
+}
+
+/* PC (1400〜1540px) */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .attendance-list-container {
+        padding: 30px;
+    }
+    .attendance-table th,
+    .attendance-table td {
+        padding: 14px 10px;
+        font-size: 15px;
+    }
+    .month-selector {
+        font-size: 17px;
+        gap: 40px;
+    }
+}
+
+/* タブレット (768〜850px) */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .attendance-list-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .attendance-list-title {
+        font-size: 18px;
+    }
+
+    .month-selector {
+        font-size: 15px;
+        gap: 20px;
+    }
+
+    .attendance-table {
+        font-size: 13px;
+    }
+
+    /* 横スクロール対応 */
+    .attendance-list-container {
+        overflow-x: auto;
+    }
+}
