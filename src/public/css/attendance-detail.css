@@ -29,6 +29,7 @@
     border-bottom: 1px solid #e0e0e0;
     text-align: left;
     font-size: 14px;
+    vertical-align: middle;
 }
 
 .attendance-detail-table th {
@@ -76,4 +77,32 @@
 
 .btn-submit:hover {
     background: #444;
+}
+
+.pending-message {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: 10px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1540px) and (min-width: 1400px),
+    (max-width: 850px) and (min-width: 768px) {
+    .attendance-detail-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .attendance-detail-table th,
+    .attendance-detail-table td {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+
+    .btn-submit {
+        padding: 8px 24px;
+        font-size: 13px;
+    }
 }
