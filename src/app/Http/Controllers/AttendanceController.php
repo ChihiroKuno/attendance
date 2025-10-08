@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use App\Models\BreakTime;
 use Carbon\Carbon;
 use App\Http\Requests\AttendanceUpdateRequest;
+use App\Models\StampCorrectionRequest;
 
 class AttendanceController extends Controller
 {
@@ -138,26 +139,35 @@ class AttendanceController extends Controller
             'work_date' => $date,
         ]);
 
-        $attendance->clock_in  = $request->clock_in;
-        $attendance->clock_out = $request->clock_out;
-        $attendance->note      = $request->note;
-        $attendance->status    = 'pending'; // 承認待ち
+        // work_date（日付）と入力された時刻を結合して datetime に変換
+        $attendance->work_start = $request->work_date . ' ' . $request->work_start . ':00';
+        $attendance->work_end   = $request->work_date . ' ' . $request->work_end . ':00';
+        $attendance->note       = $request->note;
+        $attendance->status     = 'pending'; // 承認待ち
         $attendance->save();
 
-        // 休憩時間の更新
+        // 休憩時間の再登録
         $attendance->breaks()->delete();
         if ($request->has('breaks')) {
             foreach ($request->breaks as $break) {
-                if (!empty($break['start']) && !empty($break['end'])) {
+                if (!empty($break['break_start']) && !empty($break['break_end'])) {
                     $attendance->breaks()->create([
-                        'start' => $break['start'],
-                        'end'   => $break['end'],
+                        'break_start' => $request->work_date . ' ' . $break['break_start'] . ':00',
+                        'break_end'   => $request->work_date . ' ' . $break['break_end'] . ':00',
                     ]);
                 }
             }
         }
 
+        // 🔹 修正申請レコードを登録（既存機能に影響なし）
+        StampCorrectionRequest::create([
+            'user_id'   => Auth::id(),
+            'work_date' => $attendance->work_date,
+            'reason'    => $request->note ?? '勤務内容修正申請',
+            'status'    => 'pending',
+        ]);
+
         return redirect()->route('attendance.detail', ['date' => $date])
-            ->with('success', '修正申請が完了しました（承認待ち）');
+            ->with('success', '修正申請を送信しました（承認待ち）');
     }
 }

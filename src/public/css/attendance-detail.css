@@ -1,108 +1,229 @@
-.attendance-detail-container {
-    width: 90%;
-    max-width: 800px;
-    margin: 60px auto;
-    padding: 20px;
-    background: #f6f5f7;
+/* ==============================
+   全体設定
+============================== */
+body {
+    background-color: #f6f5f7;
+    font-family: 'Arial', sans-serif;
 }
 
+/* ===== 全体ラッパ ===== */
+.attendance-detail-wrapper {
+    background-color: #f6f5f7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 20px;
+}
+
+/* ===== 外側カード（グレー背景） ===== */
+.attendance-detail-card {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* ===== タイトル ===== */
 .attendance-detail-title {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-left: 6px solid #000;
-    padding-left: 10px;
+    padding-left: 12px;
     color: #333;
 }
 
+/* ===== 白背景部分 ===== */
+.attendance-detail-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 0;
+}
+
+/* ===== テーブル設定 ===== */
 .attendance-detail-table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
+    margin: 0; /* 余白を消す */
 }
 
 .attendance-detail-table th,
 .attendance-detail-table td {
-    padding: 14px 18px;
+    padding: 18px 20px;
+    font-size: 15px;
+    color: #333;
     border-bottom: 1px solid #e0e0e0;
-    text-align: left;
-    font-size: 14px;
-    vertical-align: middle;
+}
+
+.attendance-detail-table .no-border td,
+.attendance-detail-table .no-border th {
+    border-bottom: none !important;
 }
 
 .attendance-detail-table th {
-    width: 20%;
-    font-weight: bold;
-    color: #444;
-    background: #fff;
+    width: 35%; /* ← 少し広げる（元30%） */
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    white-space: nowrap; /* ← これで改行防止！ */
 }
 
-.attendance-detail-table td input,
-.attendance-detail-table td textarea {
+/* ===== 入力欄 ===== */
+attendance-detail-table input[type="time"],
+.attendance-detail-table textarea {
+    font-size: 15px;
+    color: #000;
+    text-align: left;
     padding: 6px 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
+    width: 140px;
+}
+
+/* .attendance-detail-table textarea {
+    width: 100%;
+    resize: none;
+    text-align: left;
+    background: transparent;
+} */
+
+/* ===== 編集モード（枠あり） ===== */
+.edit-mode input[type="time"],
+.edit-mode textarea {
+    border: 1px solid #bbb;
+    background-color: #fff;
     border-radius: 4px;
 }
 
-.attendance-detail-table td textarea {
+/* ===== 表示モード（枠なし） ===== */
+.view-mode input[type="time"],
+.view-mode textarea {
+    border: none;
+    background: transparent;
+}
+
+/* ===== 備考欄の見た目調整 ===== */
+.attendance-detail-table textarea {
     width: 100%;
-    min-height: 50px;
+    resize: none;
+    min-height: 70px;
 }
 
-.error {
-    color: red;
-    font-size: 12px;
-    margin-top: 4px;
+/* ===== 出勤・休憩の波線 ===== */
+.tilde {
+    margin: 0 8px;
 }
 
+/* ===== テーブル幅いっぱい罫線 ===== */
+.attendance-detail-card {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* ===== 承認待ちメッセージ ===== */
+.pending-message {
+    color: #e57c7c;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 15px;
+}
+
+/* ===== 修正ボタン ===== */
 .form-actions {
     text-align: right;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .btn-submit {
     background: #000;
     color: #fff;
     border: none;
-    padding: 10px 30px;
-    font-size: 14px;
+    padding: 12px 36px;
+    font-size: 15px;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
 }
 
 .btn-submit:hover {
     background: #444;
 }
 
-.pending-message {
-    color: red;
+
+/* ===== エラーメッセージ ===== */
+.alert-error {
+    background-color: #ffecec;
+    border: 1px solid #f5a9a9;
+    color: #a94442;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
     font-size: 14px;
-    font-weight: bold;
-    text-align: left;
-    margin-top: 10px;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 1540px) and (min-width: 1400px),
-    (max-width: 850px) and (min-width: 768px) {
-    .attendance-detail-container {
-        width: 95%;
-        padding: 15px;
+.alert-error ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.alert-error li {
+    line-height: 1.6;
+}
+
+/* ===== 送信中ボタン ===== */
+.btn-submit[disabled] {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+/* ===== 時計アイコンを非表示 ===== */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* ==============================
+   PC表示（1400–1540px）
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .attendance-detail-content {
+        padding: 40px 50px;
+    }
+}
+
+/* ==============================
+   タブレット表示（768–850px）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .attendance-detail-wrapper {
+        padding: 60px 15px;
+    }
+
+    .attendance-detail-content {
+        padding: 25px 20px;
+    }
+
+    .attendance-detail-title {
+        font-size: 20px;
+        margin-bottom: 20px;
     }
 
     .attendance-detail-table th,
     .attendance-detail-table td {
         font-size: 13px;
-        padding: 10px 12px;
+        padding: 12px 10px;
     }
 
     .btn-submit {
-        padding: 8px 24px;
         font-size: 13px;
+        padding: 8px 24px;
     }
 }

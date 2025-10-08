@@ -17,21 +17,21 @@
         </div>
 
         @auth
-<nav class="nav">
-    <ul>
-        <li><a href="{{ route('attendance.index') }}">勤怠</a></li>
-        <li><a href="{{ route('attendance.list') }}">勤怠一覧</a></li>
-        {{-- <li><a href="{{ route('request.list') }}">申請</a></li> --}}
-        <li><span>申請</span></li>
-        <li>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="logout-btn">ログアウト</button>
-            </form>
-        </li>
-    </ul>
-</nav>
-@endauth
+        <nav class="nav">
+            <ul>
+                <li><a href="{{ route('attendance.index') }}">勤怠</a></li>
+                <li><a href="{{ route('attendance.list') }}">勤怠一覧</a></li>
+                <li><a href="{{ route('request.list') }}">申請</a></li>
+
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="logout-btn">ログアウト</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        @endauth
     </header>
     <main>
         @yield('content')

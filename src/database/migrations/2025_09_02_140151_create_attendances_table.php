@@ -13,7 +13,8 @@ return new class extends Migration {
             $table->date('work_date');
             $table->timestamp('work_start')->nullable();
             $table->timestamp('work_end')->nullable();
-            $table->enum('status', ['勤務外','出勤中','休憩中','退勤済'])->default('勤務外');
+            $table->text('note')->nullable(); // ✅ 備考追加
+            $table->enum('status', ['勤務外', '出勤中', '休憩中', '退勤済', 'pending'])->default('勤務外'); // ✅ 修正申請状態
             $table->timestamps();
         });
     }

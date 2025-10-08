@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\StampCorrectionRequestController;
 
 
 Route::get('/', function () {
@@ -34,4 +35,8 @@ Route::middleware(['auth'])->group(function () {
 
     // 🔹 勤怠一覧
     Route::get('/attendance/list', [AttendanceController::class, 'list'])->name('attendance.list');
+
+    // 一般ユーザー用：申請一覧
+    Route::get('/stamp_correction_request/list', [StampCorrectionRequestController::class, 'list'])
+        ->name('request.list');
 });

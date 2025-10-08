@@ -2,96 +2,118 @@
 
 @section('title', '勤怠詳細')
 
+@section('head')
+<link rel="stylesheet" href="{{ asset('css/attendance-detail.css') }}">
+@endsection
+
 @section('content')
-<div class="attendance-detail-container">
-    <h1 class="attendance-detail-title">勤怠詳細</h1>
+@php
+    $isPending = optional($attendance)->status === 'pending';
+    $modeClass = $isPending ? 'view-mode' : 'edit-mode'; // 修正前後で切替
+@endphp
 
-    <form method="POST"
-          action="{{ route('attendance.update', [
-              'date' => $attendance->work_date
-                  ? \Carbon\Carbon::parse($attendance->work_date)->toDateString() 
-                  : $date
-          ]) }}">
-        @csrf
-        @method('PUT')
+<div class="attendance-detail-wrapper">
+    <div class="attendance-detail-card {{ $modeClass }}">
+        <h1 class="attendance-detail-title">勤怠詳細</h1>
 
-        <table class="attendance-detail-table">
-            <tbody>
-                <tr>
-                    <th>名前</th>
-                    <td>{{ Auth::user()->name }}</td>
-                </tr>
-                <tr>
-                    <th>日付</th>
-                    <td>
-                        {{ $attendance->work_date
-                            ? \Carbon\Carbon::parse($attendance->work_date)->format('Y年n月j日') 
-                            : \Carbon\Carbon::parse($date)->format('Y年n月j日') }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>出勤・退勤</th>
-                    <td>
-                        <input type="time" name="clock_in" 
-                               value="{{ old('clock_in', $attendance->work_start) }}">
-                        〜
-                        <input type="time" name="clock_out" 
-                               value="{{ old('clock_out', $attendance->work_end) }}">
-                        @error('clock_in')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                        @error('clock_out')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                    </td>
-                </tr>
+        @php
+            $workDate = optional($attendance)->work_date ?? $date;
+            $carbonDate = \Carbon\Carbon::parse($workDate);
+            $breaks = optional($attendance)->breaks ?? collect();
+        @endphp
 
-                @foreach($attendance->breaks ?? [] as $i => $break)
-                    <tr>
-                        <th>休憩{{ $i+1 }}</th>
-                        <td>
-                            <input type="time" 
-                                   name="breaks[{{ $i }}][start]" 
-                                   value="{{ old("breaks.$i.start", $break->break_start) }}">
-                            〜
-                            <input type="time" 
-                                   name="breaks[{{ $i }}][end]" 
-                                   value="{{ old("breaks.$i.end", $break->break_end) }}">
-                        </td>
-                    </tr>
-                @endforeach
+        <form method="POST" action="{{ route('attendance.update', ['date' => $workDate]) }}" id="attendanceForm">
+            @csrf
+            @method('PUT')
+            <input type="hidden" name="work_date" value="{{ $carbonDate->format('Y-m-d') }}">
 
-                {{-- 休憩追加欄 --}}
-                <tr>
-                    <th>休憩追加</th>
-                    <td>
-                        <input type="time" name="breaks[new][start]" value="">
-                        〜
-                        <input type="time" name="breaks[new][end]" value="">
-                    </td>
-                </tr>
+            <div class="attendance-detail-content">
+                <table class="attendance-detail-table">
+                    <tbody>
+                        <tr>
+                            <th>名前</th>
+                            <td>{{ Auth::user()->name }}</td>
+                        </tr>
 
-                <tr>
-                    <th>備考</th>
-                    <td>
-                        <textarea name="note">{{ old('note', $attendance->note) }}</textarea>
-                        @error('note')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        <tr>
+                            <th>日付</th>
+                            <td>
+                                <span>{{ $carbonDate->format('Y年n月j日') }}</span>
+                            </td>
+                        </tr>
 
-        <div class="form-actions">
-            @if($attendance->status === 'pending')
-                <p class="pending-message">
-                    *承認待ちのため修正はできません。
-                </p>
-            @else
-                <button type="submit" class="btn-submit">修正</button>
-            @endif
-        </div>
-    </form>
+                        <tr>
+                            <th>出勤・退勤</th>
+                            <td class="td-time">
+                                <input type="time" name="work_start"
+                                    value="{{ old('work_start', optional($attendance)->work_start ? \Carbon\Carbon::parse($attendance->work_start)->format('H:i') : '') }}">
+                                <span class="tilde">〜</span>
+                                <input type="time" name="work_end"
+                                    value="{{ old('work_end', optional($attendance)->work_end ? \Carbon\Carbon::parse($attendance->work_end)->format('H:i') : '') }}">
+                                @error('work_start')
+                                    <div class="error-message">{{ $message }}</div>
+                                @enderror
+                                @error('work_end')
+                                    <div class="error-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>休憩</th>
+                            <td class="td-time">
+                                <input type="time" name="breaks[0][break_start]"
+                                    value="{{ old('breaks.0.break_start', optional($breaks->get(0))->break_start ? \Carbon\Carbon::parse($breaks->get(0)->break_start)->format('H:i') : '') }}">
+                                <span class="tilde">〜</span>
+                                <input type="time" name="breaks[0][break_end]"
+                                    value="{{ old('breaks.0.break_end', optional($breaks->get(0))->break_end ? \Carbon\Carbon::parse($breaks->get(0)->break_end)->format('H:i') : '') }}">
+                                @error('breaks.0.break_start')
+                                    <div class="error-message">{{ $message }}</div>
+                                @enderror
+                                @error('breaks.0.break_end')
+                                    <div class="error-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>休憩2</th>
+                            <td class="td-time">
+                                <input type="time" name="breaks[1][break_start]"
+                                    value="{{ old('breaks.1.break_start', optional($breaks->get(1))->break_start ? \Carbon\Carbon::parse($breaks->get(1)->break_start)->format('H:i') : '') }}">
+                                <span class="tilde">〜</span>
+                                <input type="time" name="breaks[1][break_end]"
+                                    value="{{ old('breaks.1.break_end', optional($breaks->get(1))->break_end ? \Carbon\Carbon::parse($breaks->get(1)->break_end)->format('H:i') : '') }}">
+                                @error('breaks.1.break_start')
+                                    <div class="error-message">{{ $message }}</div>
+                                @enderror
+                                @error('breaks.1.break_end')
+                                    <div class="error-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
+
+                        <tr class="no-border">
+                            <th>備考</th>
+                            <td>
+                                <textarea name="note" rows="3">{{ old('note', optional($attendance)->note ?? '') }}</textarea>
+                                @error('note')
+                                    <div class="error-message">{{ $message }}</div>
+                                @enderror
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-actions">
+                @if($isPending)
+                    <p class="pending-message">※ 承認待ちのため修正はできません。</p>
+                @else
+                    <button type="submit" class="btn-submit">修正</button>
+                @endif
+            </div>
+        </form>
+    </div>
 </div>
 @endsection

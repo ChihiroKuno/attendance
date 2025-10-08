@@ -1,0 +1,164 @@
+body {
+    background-color: #f6f5f7;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ===== 全体ラッパ ===== */
+.request-list-wrapper {
+    background-color: #f6f5f7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 20px;
+}
+
+/* ===== カード ===== */
+.request-list-card {
+    width: 100%;
+    max-width: 800px;
+}
+
+/* ===== タイトル ===== */
+.request-list-title {
+    background: #eaeaea;
+    font-size: 22px;
+    font-weight: bold;
+    border-left: 6px solid #000;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* ===== 承認待ち・承認済みボタン ===== */
+.request-filter {
+    display: flex;
+    gap: 12px;
+    background: #f0f0f0;
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.filter-btn {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 8px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    background: #f8f8f8;
+}
+
+.filter-btn.active {
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+}
+
+.filter-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ===== テーブル枠 ===== */
+.request-table-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    padding: 0;
+}
+
+/* ===== テーブル ===== */
+.request-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.request-table th,
+.request-table td {
+    padding: 16px 20px;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.request-table th {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.request-table td:last-child {
+    text-align: center;
+}
+
+.request-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== ステータスバッジ ===== */
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.status.pending {
+    background: #fff4d2;
+    color: #b58900;
+}
+
+/* ===== 詳細リンク ===== */
+.detail-link {
+    color: #000;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.detail-link:hover {
+    color: #444;
+}
+
+/* ==============================
+   PC表示（1400–1540px）
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .request-list-card {
+        max-width: 900px;
+    }
+    .request-table th,
+    .request-table td {
+        padding: 18px 24px;
+    }
+}
+
+/* ==============================
+   タブレット表示（768–850px）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .request-list-wrapper {
+        padding: 60px 15px;
+    }
+
+    .request-list-title {
+        font-size: 20px;
+    }
+
+    .filter-btn {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+
+    .request-table th,
+    .request-table td {
+        font-size: 13px;
+        padding: 12px 10px;
+    }
+}
