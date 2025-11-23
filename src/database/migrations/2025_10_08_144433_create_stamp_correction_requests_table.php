@@ -11,6 +11,12 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('work_date');
+            $table->time('new_work_start')->nullable();
+            $table->time('new_work_end')->nullable();
+            $table->time('new_break_start_1')->nullable();
+            $table->time('new_break_end_1')->nullable();
+            $table->time('new_break_start_2')->nullable();
+            $table->time('new_break_end_2')->nullable();
             $table->text('reason')->nullable();
             $table->enum('status', ['pending', 'approved'])->default('pending');
             $table->timestamps();

@@ -14,13 +14,18 @@
 
         {{-- フィルターボタン --}}
         <div class="request-filter">
-            <a href="{{ route('request.list', ['status' => 'pending']) }}"
-                class="filter-btn {{ $status === 'pending' ? 'active' : '' }}">
-                承認待ち
+            {{-- ✅ 一般ユーザー用と管理者用でリンクを切り替え --}}
+            @php
+                $baseRoute = !empty($isAdmin) ? 'admin.request.list' : 'request.list';
+            @endphp
+
+            <a href="{{ route($baseRoute, ['status' => 'pending']) }}"
+               class="filter-btn {{ $status === 'pending' ? 'active' : '' }}">
+               承認待ち
             </a>
-            <a href="{{ route('request.list', ['status' => 'approved']) }}"
-                class="filter-btn {{ $status === 'approved' ? 'active' : 'disabled' }}">
-                承認済み
+            <a href="{{ route($baseRoute, ['status' => 'approved']) }}"
+               class="filter-btn {{ $status === 'approved' ? 'active' : '' }}">
+               承認済み
             </a>
         </div>
 
@@ -30,8 +35,13 @@
                 <thead>
                     <tr>
                         <th>状態</th>
-                        <th>名前</th>
-                        <th>対象日時</th>
+
+                        {{-- ✅ 管理者用はユーザー名を表示 --}}
+                        @if (!empty($isAdmin))
+                            <th>名前</th>
+                        @endif
+
+                        <th>対象日付</th>
                         <th>申請理由</th>
                         <th>申請日時</th>
                         <th>詳細</th>
@@ -47,17 +57,32 @@
                                     <span class="status approved">承認済み</span>
                                 @endif
                             </td>
-                            <td>{{ $req->user->name }}</td>
-                            <td>{{ $req->work_date->format('Y年n月j日') }}</td>
+
+                            {{-- ✅ 管理者用はユーザー名を出す --}}
+                            @if (!empty($isAdmin))
+                                <td>{{ $req->user->name ?? '不明' }}</td>
+                            @endif
+
+                            <td>{{ \Carbon\Carbon::parse($req->work_date)->format('Y/m/d') }}</td>
                             <td>{{ $req->reason }}</td>
-                            <td>{{ $req->created_at->format('Y年n月j日 H:i') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($req->created_at)->format('Y/m/d') }}</td>
+
+                            {{-- ✅ 管理者と一般で遷移先を分ける --}}
                             <td>
-                                <a href="{{ url('/attendance/detail/' . $req->work_date->format('Y-m-d')) }}" class="detail-link">詳細</a>
+                            @if (!empty($isAdmin))
+                                <a href="{{ route('stamp_correction_request.show', ['id' => $req->id]) }}" class="detail-link">
+                                    詳細
+                                </a>
+                            @else
+                                <a href="{{ url('/attendance/detail/' . $req->work_date) }}" class="detail-link">
+                                    詳細
+                                </a>
+                            @endif
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" style="text-align:center; padding:20px; color:#666;">
+                            <td colspan="{{ !empty($isAdmin) ? 6 : 5 }}" class="no-data">
                                 {{ $status === 'pending' ? '承認待ちの申請はありません。' : '承認済みの申請はありません。' }}
                             </td>
                         </tr>

@@ -7,6 +7,7 @@ use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -24,10 +25,14 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // 自動ログイン
+       // 認証メール送信
+        $user->sendEmailVerificationNotification();
+
+        // 登録したユーザーを一時的にログインさせる
         Auth::login($user);
 
-        // 勤怠登録画面へリダイレクト
-        return redirect()->route('attendance.index');
+        // メール認証誘導画面へ遷移
+        return redirect()->route('verification.notice')
+            ->with('message', '登録ありがとうございます。メール認証を完了してください。');
     }
 }

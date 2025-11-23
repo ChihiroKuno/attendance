@@ -154,9 +154,4 @@ body {
     .attendance-table {
         font-size: 13px;
     }
-
-    /* 横スクロール対応 */
-    .attendance-list-container {
-        overflow-x: auto;
-    }
 }

@@ -60,15 +60,10 @@ class AttendanceUpdateRequest extends FormRequest
     {
         return [
             'work_start.required' => '出勤時間を入力してください。',
-            'work_start.date_format' => '出勤時間は「HH:MM」形式で入力してください。',
             'work_end.required' => '退勤時間を入力してください。',
-            'work_end.date_format' => '退勤時間は「HH:MM」形式で入力してください。',
             'work_end.after' => '退勤時間は出勤時間より後にしてください。',
-            'breaks.*.break_start.date_format' => '休憩時間は「HH:MM」形式で入力してください。',
-            'breaks.*.break_end.date_format' => '休憩時間は「HH:MM」形式で入力してください。',
             'breaks.*.break_end.after' => '休憩終了は休憩開始より後にしてください。',
             'note.required' => '備考を入力してください。',
-            'note.max' => '備考は255文字以内で入力してください。',
         ];
     }
 }

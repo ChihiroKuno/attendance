@@ -3,73 +3,62 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-/* ===== 全体ラッパ ===== */
+/* ===== 全体 ===== */
 .request-list-wrapper {
-    background-color: #f6f5f7;
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     padding: 80px 20px;
+    min-height: 100vh;
+    background-color: #f6f5f7;
 }
 
 /* ===== カード ===== */
 .request-list-card {
     width: 100%;
-    max-width: 800px;
+    max-width: 950px;
 }
 
 /* ===== タイトル ===== */
 .request-list-title {
-    background: #eaeaea;
     font-size: 22px;
     font-weight: bold;
     border-left: 6px solid #000;
-    padding: 14px 16px;
-    margin-bottom: 20px;
-    color: #333;
+    padding-left: 12px;
+    margin-bottom: 30px;
 }
 
-/* ===== 承認待ち・承認済みボタン ===== */
+/* ===== タブ切替 ===== */
 .request-filter {
     display: flex;
-    gap: 12px;
-    background: #f0f0f0;
-    padding: 14px 16px;
-    border-radius: 8px;
-    margin-bottom: 25px;
+    gap: 40px;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 40px;
+    justify-content: left;
 }
 
 .filter-btn {
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 8px 20px;
-    font-size: 14px;
-    border-radius: 4px;
-    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 0;
+    color: #333;
+    text-decoration: none;
     transition: all 0.2s;
 }
 
-.filter-btn:hover {
-    background: #f8f8f8;
-}
-
 .filter-btn.active {
-    background: #000;
-    color: #fff;
-    border: 1px solid #000;
+    border-bottom: 3px solid #000;
+    color: #000;
 }
 
-.filter-btn.disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.filter-btn:hover {
+    color: #000;
 }
 
 /* ===== テーブル枠 ===== */
 .request-table-wrapper {
     background: #fff;
     border-radius: 12px;
-    overflow: hidden;
     padding: 0;
 }
 
@@ -77,31 +66,31 @@ body {
 .request-table {
     width: 100%;
     border-collapse: collapse;
+    text-align: left;
 }
 
 .request-table th,
 .request-table td {
     padding: 16px 20px;
+    border-bottom: 1px solid #ddd;
     font-size: 15px;
-    color: #333;
-    border-bottom: 1px solid #e0e0e0;
-    text-align: left;
+    border-radius: 12px;
 }
 
 .request-table th {
-    font-weight: 600;
-    white-space: nowrap;
-}
-
-.request-table td:last-child {
-    text-align: center;
+    background-color: #fff;
+    font-weight: bold;
 }
 
 .request-table tr:last-child td {
     border-bottom: none;
 }
 
-/* ===== ステータスバッジ ===== */
+.request-table td:last-child {
+    text-align: center;
+}
+
+/* ===== ステータス ===== */
 .status {
     display: inline-block;
     padding: 4px 10px;
@@ -111,8 +100,13 @@ body {
 }
 
 .status.pending {
-    background: #fff4d2;
-    color: #b58900;
+    background: #fff;
+    color: #333;
+}
+
+.status.approved {
+    background: #fff;
+    color: #333;
 }
 
 /* ===== 詳細リンク ===== */
@@ -126,36 +120,28 @@ body {
     color: #444;
 }
 
-/* ==============================
-   PC表示（1400–1540px）
-============================== */
+/* ===== データなし ===== */
+.no-data {
+    text-align: center;
+    color: #666;
+    padding: 30px 0;
+}
+
+/* ===== PC表示 ===== */
 @media (min-width: 1400px) and (max-width: 1540px) {
     .request-list-card {
-        max-width: 900px;
-    }
-    .request-table th,
-    .request-table td {
-        padding: 18px 24px;
+        max-width: 1000px;
     }
 }
 
-/* ==============================
-   タブレット表示（768–850px）
-============================== */
+/* ===== タブレット表示 ===== */
 @media (min-width: 768px) and (max-width: 850px) {
     .request-list-wrapper {
         padding: 60px 15px;
     }
-
     .request-list-title {
         font-size: 20px;
     }
-
-    .filter-btn {
-        font-size: 13px;
-        padding: 6px 14px;
-    }
-
     .request-table th,
     .request-table td {
         font-size: 13px;

@@ -17,11 +17,27 @@ class LoginController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
+        // if (Auth::attempt($credentials, $request->filled('remember'))) {
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('/attendance'); // ← ここを変更
+        // }
+
+        // return back()->withErrors([
+        //     'email' => 'ログイン情報が登録されていません',
+        // ])->withInput();
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/attendance'); // ← ここを変更
+    
+            // ✅ メール未認証の場合はログアウトして誘導
+            if (!Auth::user()->hasVerifiedEmail()) {
+                Auth::logout();
+                return redirect()->route('verification.notice')
+                    ->with('message', 'メール認証が完了していません。メールを確認してください。');
+            }
+    
+            return redirect()->intended('/attendance');
         }
-
+    
         return back()->withErrors([
             'email' => 'ログイン情報が登録されていません',
         ])->withInput();

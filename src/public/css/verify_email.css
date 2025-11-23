@@ -1,0 +1,87 @@
+.verify-wrapper {
+    text-align: center;
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.verify-message {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.verify-button {
+    background-color: #e0e0e0;
+    color: #000;
+    font-size: 14px;
+    padding: 12px 30px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.verify-button:hover {
+    background-color: #d5d5d5;
+}
+
+.resend-link {
+    display: block;
+    color: #0044cc;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.resend-link:hover {
+    text-decoration: underline;
+}
+
+/* ==============================
+   PC表示（1400–1540px）
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .verify-wrapper {
+        margin-top: 120px;
+        padding: 40px 60px;
+    }
+
+    .verify-message {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    .verify-button {
+        font-size: 15px;
+        padding: 14px 40px;
+    }
+
+    /* .resend-link {
+        font-size: 14px;
+    } */
+}
+
+/* ==============================
+   タブレット表示（768–850px）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .verify-wrapper {
+        margin-top: 80px;
+        padding: 25px 15px;
+    }
+
+    .verify-message {
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+    .verify-button {
+        font-size: 13px;
+        padding: 10px 25px;
+    }
+
+    /* .resend-link {
+        font-size: 12px;
+    } */
+}

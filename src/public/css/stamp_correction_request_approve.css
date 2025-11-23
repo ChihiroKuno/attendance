@@ -1,0 +1,173 @@
+/* ==============================
+   全体設定
+============================== */
+body {
+    background-color: #f6f5f7;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ===== 全体ラッパ ===== */
+.approval-wrapper {
+    background-color: #f6f5f7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 20px;
+}
+
+/* ===== 外側カード（グレー背景） ===== */
+.approval-card {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* ===== タイトル ===== */
+.approval-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-left: 6px solid #000;
+    padding-left: 12px;
+    color: #333;
+}
+
+/* ===== 白背景部分 ===== */
+.approval-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 0;
+}
+
+/* ===== テーブル設定 ===== */
+.approval-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.approval-table th,
+.approval-table td {
+    padding: 18px 20px;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.approval-table th {
+    width: 35%;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.approval-table .no-border td,
+.approval-table .no-border th {
+    border-bottom: none !important;
+}
+
+/* ===== 入力欄 ===== */
+.approval-table input[type="time"],
+.approval-table textarea {
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    padding: 6px 8px;
+    width: 140px;
+    border: none;
+    background: transparent;
+}
+
+/* ===== 時間欄を横並び ===== */
+.td-time {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 時間と〜の間隔 */
+}
+
+/* ===== 波線 ===== */
+.tilde {
+    margin: 0 8px;
+}
+
+/* ===== 備考欄 ===== */
+.approval-table textarea {
+    width: 100%;
+    resize: none;
+    min-height: 70px;
+}
+
+/* ===== ボタンエリア ===== */
+.form-actions {
+    text-align: right;
+    margin-top: 25px;
+}
+
+/* ===== 承認ボタン ===== */
+.btn-approve {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 36px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-approve:hover {
+    background: #444;
+}
+
+/* ===== 承認済み表示 ===== */
+.approved-message {
+    background-color: #555;
+    color: #fff;
+    display: inline-block;
+    padding: 12px 36px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+/* ==============================
+   PC表示（1400–1540px）
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .approval-content {
+        padding: 40px 50px;
+    }
+}
+
+/* ==============================
+   タブレット表示（768–850px）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .approval-wrapper {
+        padding: 60px 15px;
+    }
+
+    .approval-content {
+        padding: 25px 20px;
+    }
+
+    .approval-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .approval-table th,
+    .approval-table td {
+        font-size: 13px;
+        padding: 12px 10px;
+    }
+
+    .btn-approve,
+    .approved-message {
+        font-size: 13px;
+        padding: 8px 24px;
+    }
+}

@@ -1,0 +1,222 @@
+/* ==============================
+   全体設定
+============================== */
+body {
+    background-color: #f6f5f7;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ===== 全体ラッパ ===== */
+.attendance-detail-wrapper {
+    background-color: #f6f5f7;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 20px;
+}
+
+/* ===== 外側カード（グレー背景） ===== */
+.attendance-detail-card {
+    max-width: 800px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* ===== タイトル ===== */
+.attendance-detail-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    border-left: 6px solid #000;
+    padding-left: 12px;
+    color: #333;
+}
+
+/* ===== 白背景部分 ===== */
+.attendance-detail-content {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px 0;
+}
+
+/* ===== テーブル設定 ===== */
+.attendance-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0; /* 余白を消す */
+}
+
+.attendance-detail-table th,
+.attendance-detail-table td {
+    padding: 18px 20px;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.attendance-detail-table .no-border td,
+.attendance-detail-table .no-border th {
+    border-bottom: none !important;
+}
+
+.attendance-detail-table th {
+    width: 35%; /* ← 少し広げる（元30%） */
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    white-space: nowrap; /* ← これで改行防止！ */
+}
+
+/* ===== 入力欄 ===== */
+attendance-detail-table input[type="time"],
+.attendance-detail-table textarea {
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    padding: 6px 8px;
+    width: 140px;
+}
+
+
+/* ===== 編集モード（枠あり） ===== */
+.edit-mode input[type="time"],
+.edit-mode textarea {
+    border: 1px solid #bbb;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+/* ===== 表示モード（枠なし） ===== */
+.view-mode input[type="time"],
+.view-mode textarea {
+    border: none;
+    background: transparent;
+}
+
+/* ===== 備考欄の見た目調整 ===== */
+.attendance-detail-table textarea {
+    width: 100%;
+    resize: none;
+    min-height: 70px;
+}
+
+/* ===== 出勤・休憩の波線 ===== */
+.tilde {
+    margin: 0 8px;
+}
+
+/* ===== テーブル幅いっぱい罫線 ===== */
+.attendance-detail-card {
+    max-width: 800px;
+    width: 100%;
+}
+
+/* ===== 修正ボタン ===== */
+.form-actions {
+    text-align: right;
+    margin-top: 25px;
+}
+
+.btn-submit {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 36px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-submit:hover {
+    background: #444;
+}
+
+
+/* ===== エラーメッセージ ===== */
+.alert-error {
+    background-color: #ffecec;
+    border: 1px solid #f5a9a9;
+    color: #a94442;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.alert-error ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.alert-error li {
+    line-height: 1.6;
+}
+
+.alert-success {
+    color: #d32f2f; /* 赤文字 */
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+/* ===== 送信中ボタン ===== */
+.btn-submit[disabled] {
+    background-color: #999;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+/* ===== 時計アイコンを非表示 ===== */
+input[type="time"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+/* ==============================
+   PC表示（1400–1540px）
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .attendance-detail-content {
+        padding: 40px 50px;
+    }
+}
+
+/* ==============================
+   タブレット表示（768–850px）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .attendance-detail-wrapper {
+        padding: 60px 15px;
+    }
+
+    .attendance-detail-content {
+        padding: 25px 20px;
+    }
+
+    .attendance-detail-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .attendance-detail-table th,
+    .attendance-detail-table td {
+        font-size: 13px;
+        padding: 12px 10px;
+    }
+
+    .btn-submit {
+        font-size: 13px;
+        padding: 8px 24px;
+    }
+}

@@ -33,4 +33,3 @@ Laravel環境構築手順
 
 　	•開発環境： http://localhost/
 　	•phpMyAdmin： http://localhost:8080/
-

@@ -1,0 +1,161 @@
+body {
+    background-color: #f6f5f7;
+    font-family: 'Arial', sans-serif;
+}
+
+/* ===== 全体ラッパ ===== */
+.admin-attendance-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+/* ===== タイトル行 ===== */
+.attendance-header {
+    background: #f6f5f7;
+    padding: 16px 20px;
+    border-radius: 6px 6px 0 0;
+}
+
+.attendance-title {
+    font-size: 20px;
+    font-weight: bold;
+    border-left: 6px solid #000;
+    padding-left: 10px;
+    margin: 0;
+}
+
+/* ===== 日付ナビ（一般ユーザーと統一） ===== */
+.date-nav {
+    display: flex;
+    justify-content: space-between; /* 両端に配置 */
+    align-items: center;
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 中央カレンダー部分 */
+.date-display {
+    flex: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.date-display i {
+    margin-right: 6px;
+    color: #444;
+}
+
+/* 前日・翌日ボタン */
+.date-btn {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.date-btn:hover {
+    background: #f0f0f0;
+}
+
+/* ===== グレーのスペース ===== */
+.gray-space {
+    height: 20px;
+    background-color: #f6f5f7;
+}
+
+/* ===== テーブル ===== */
+.attendance-table-wrapper {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.attendance-table th,
+.attendance-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.attendance-table th {
+    background: #fff;
+    font-weight: bold;
+}
+
+.no-data {
+    text-align: center;
+    padding: 30px 0;
+    color: #666;
+}
+
+.detail-link {
+    color: #000;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* ==============================
+   PC（1400〜1540px）
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
+    .admin-attendance-wrapper {
+        max-width: 1100px;
+    }
+
+    .attendance-title {
+        font-size: 22px;
+    }
+
+    .date-btn {
+        font-size: 15px;
+        padding: 10px 24px;
+    }
+}
+
+/* ==============================
+   タブレット（768〜850px）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .admin-attendance-wrapper {
+        max-width: 95%;
+        margin-top: 60px;
+    }
+
+    .attendance-title {
+        font-size: 18px;
+    }
+
+    .attendance-table th,
+    .attendance-table td {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .date-btn {
+        font-size: 13px;
+        padding: 6px 14px;
+    }
+
+    .calendar-text {
+        font-size: 15px;
+    }
+}

@@ -78,13 +78,6 @@ attendance-detail-table input[type="time"],
     width: 140px;
 }
 
-/* .attendance-detail-table textarea {
-    width: 100%;
-    resize: none;
-    text-align: left;
-    background: transparent;
-} */
-
 /* ===== 編集モード（枠あり） ===== */
 .edit-mode input[type="time"],
 .edit-mode textarea {

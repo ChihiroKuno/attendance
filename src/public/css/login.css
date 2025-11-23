@@ -82,25 +82,72 @@ input[type="password"] {
 
 /* ===== レスポンシブ対応 ===== */
 
-/* ▼ タブレット（768px〜850px） */
-@media (max-width: 850px) {
+/* ==============================
+   PC表示（1400–1540px）
+============================== */
+@media (min-width: 1400px) and (max-width: 1540px) {
     .login-container {
-        width: 80%;
-        padding: 20px;
+        width: 480px;
+        padding: 40px 50px;
+        margin: 100px auto;
+    }
+
+    .login-container h1 {
+        font-size: 28px;
+        margin-bottom: 45px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    .btn-submit {
+        font-size: 18px;
+        padding: 14px;
+    }
+
+    .error-message {
+        font-size: 15px;
+    }
+
+    .register-link {
+        font-size: 15px;
+    }
+}
+
+/* ==============================
+   タブレット表示（768–850px）
+============================== */
+@media (min-width: 768px) and (max-width: 850px) {
+    .login-container {
+        width: 85%;
+        padding: 25px;
+        margin: 60px auto;
     }
 
     .login-container h1 {
         font-size: 22px;
+        margin-bottom: 30px;
     }
 
     input[type="email"],
     input[type="password"] {
         font-size: 15px;
-        padding: 8px;
+        padding: 9px;
     }
 
     .btn-submit {
         font-size: 15px;
-        padding: 10px;
+        padding: 11px;
+    }
+
+    .error-message {
+        font-size: 13px;
+    }
+
+    .register-link {
+        font-size: 13px;
     }
 }
