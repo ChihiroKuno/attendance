@@ -11,7 +11,6 @@ use App\Http\Requests\AdminAttendanceUpdateRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\MessageBag;
 
 
 class AdminAttendanceController extends Controller
@@ -41,7 +40,7 @@ class AdminAttendanceController extends Controller
         ]);
     }
 
-    public function show($id)
+        public function show($id)
     {
         // 必要なリレーションだけ読み込む（breaks と user）
         $attendance = Attendance::with(['breaks', 'user'])->findOrFail($id);
@@ -49,13 +48,9 @@ class AdminAttendanceController extends Controller
         // Blade の $date 変数に必要
         $date = $attendance->work_date;
 
-        // ★ GETでも $errors を必ず渡す（未定義エラーを防ぐ）
-        $errors = session('errors', new MessageBag());
-
         return view('admin_attendance_detail', [
             'attendance' => $attendance,
             'date' => $date,
-            'errors' => $errors,
         ]);
     }
 
